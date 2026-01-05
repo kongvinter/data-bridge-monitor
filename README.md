@@ -9,7 +9,7 @@
       (Port 8080)              (Port 5432)               (Logs/Output)
 
 setup linux / mac :genesis.sh (init) , apocalypse.sh (end)
-setup windons :genesis.bat (init) , apocalypse.bat (end)
+setup windows :genesis.bat (init) , apocalypse.bat (end)
 
 flux : [CLIENTE] → POST :8080/data → [JAVA] → [POSTGRES] ← [NODE] → CONSOLE
 
