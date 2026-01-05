@@ -11,7 +11,7 @@
 setup linux / mac :genesis.sh (init) , apocalypse.sh (end)
 setup windons :genesis.bat (init) , apocalypse.bat (end)
 
-flux : Fluxo de Dados: [CLIENTE] → POST :8080/data → [JAVA] → [POSTGRES] ← [NODE] → CONSOLE
+flux : [CLIENTE] → POST :8080/data → [JAVA] → [POSTGRES] ← [NODE] → CONSOLE
 
 send data : curl -X POST http://localhost:8080/data -d '{"msg": "test message"}'
 
