@@ -1,9 +1,15 @@
-package com.example.demo.controller; // Ajustado para a nova pasta
+package com.example.demo.controller; 
 
-import com.example.demo.model.RecordEntity; // Import atualizado
-import com.example.demo.repository.RecordRepository; // Import atualizado
-import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.RecordEntity;
+import com.example.demo.repository.RecordRepository;
 
 @RestController
 @RequestMapping("/api/records")

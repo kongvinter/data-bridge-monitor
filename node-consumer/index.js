@@ -11,12 +11,12 @@ const client = new Client({
 async function readDatabase() {
   try {
     await client.connect();
-    console.log(" Node.js conectado ao Banco de Dados com sucesso");
+    console.log(" node connected to database.");
 
 
     const res = await client.query('SELECT * FROM raw_records');
 
-    console.log(" Dados encontrados pelo Node:");
+    console.log(" data nodes retrieved from database:");
     console.table(res.rows);
 
   } catch (err) {

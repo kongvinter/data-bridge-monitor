@@ -1,4 +1,5 @@
 services:
+#database service
   db:
     image: postgres:16
     container_name: bridge_db
@@ -8,3 +9,35 @@ services:
       POSTGRES_DB: bridge_db
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d bridge_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+# java application (Producer)
+  java-app:
+    build: .
+    container_name: java_producer
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/bridge_db
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+
+  #node application (Consumer)
+  node-consumer:
+    build: ./node-consumer
+    container_name: node_consumer
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_USER: user
+      DB_PASS: password
+      DB_NAME: bridge_db

@@ -5,11 +5,11 @@ echo "stop process."
 cd "$(dirname "$0")"
 
 echo "containers shutdown."
-# O 'down' para e remove os containers
+
 sudo docker compose down
 
 echo "node process shutdown."
-# O pkill mata o processo do consumer
+
 pkill -f "node index.js" || echo "No Node.js process found."
 
 echo "----------------------------------------"

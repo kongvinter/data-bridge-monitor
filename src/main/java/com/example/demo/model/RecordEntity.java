@@ -1,4 +1,4 @@
-package com.example.demo.model; // Caminho completo atualizado
+package com.example.demo.model;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -17,16 +17,16 @@ public class RecordEntity {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // Construtor padrão (Obrigatório para o Hibernate/JPA)
+
     public RecordEntity() {}
 
-    // Construtor para facilitar a criação de novos registros
+
     public RecordEntity(UUID id, String data) {
         this.id = id;
         this.data = data;
     }
 
-    // Getters e Setters
+
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
     public String getData() { return data; }
