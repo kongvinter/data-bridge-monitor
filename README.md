@@ -16,4 +16,3 @@ flux : [CLIENTE] → POST :8080/data → [JAVA] → [POSTGRES] ← [NODE] → CO
 send data : curl -X POST http://localhost:8080/data -d '{"msg": "test message"}'
 
 logs : docker logs -f node-consumer
-resilient data bridge between Java and Node.js. High-performance architecture focused on QA automation, idempotency, and data integrity.
