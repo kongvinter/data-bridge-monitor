@@ -1,4 +1,4 @@
-# --- Java (Maven/Gradle) ---
+
 target/
 *.class
 .mvn/
@@ -6,23 +6,19 @@ target/
 *.war
 build/
 
-# --- Node.js ---
 node_modules/
 npm-debug.log
 .env
 
-# --- Docker & Banco de Dados (IMPORTANTE) ---
-# Se a sua pasta de dados do Postgres se chamar 'data' ou '.data', mude aqui:
 .data/
 data/
 pgdata/
 
-# --- IDEs (VS Code, IntelliJ) ---
 .vscode/
 .idea/
 *.swp
 *.iml
 
-# --- Outros ---
+
 HELP.md
 .DS_Store
