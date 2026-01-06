@@ -5,14 +5,10 @@
 
 *Prerequisites: > - Docker & Docker Compose installed.*
 
-[ JAVA PRODUCER ] --(JDBC)--> [ POSTGRES DB ] <--(SQL)-- [ NODE CONSUMER ]
-      (Port 8080)              (Port 5432)               (Logs/Output)
+[ WEB MONITORING ] <--(Socket.io)-- [ NODE BRIDGE ] <--(Notify)-- [ POSTGRES ] (Browser :3000) (Port 3000) (Port 5432)
 
-setup linux / mac :genesis.sh (init) , apocalypse.sh (end)
-setup windows :genesis.bat (init) , apocalypse.bat (end)
+flux novo : [CLIENTE] → POST :8080/data → [JAVA] → [POSTGRES] → [NODE] → [WEB HTML] real-time : socket.io connection established on client load web view : open index.html in browser to see live updates
 
-flux : [CLIENTE] → POST :8080/data → [JAVA] → [POSTGRES] ← [NODE] → CONSOLE
+scripts linux/fedora : ./genesis.sh (up docker, build java, start node) ./apocalypse.sh (stop all, clean containers, kill ports)
 
-send data : curl -X POST http://localhost:8080/data -d '{"msg": "test message"}'
-
-logs : docker logs -f node-consumer
+send data : curl -X POST http://localhost:8080/data -H "Content-Type: application/json" -d '{"content": "socket test"}' logs node : check terminal for "data received from postgres and emitted to socket"

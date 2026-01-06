@@ -1,21 +1,20 @@
 #!/bin/bash
-echo "stop process."
+echo "apocalypse: stopping all processes"
 
-# 1. Entrar na pasta onde o script está (garante que acha o docker-compose.yml)
 cd "$(dirname "$0")"
 
-echo "containers shutdown."
+# clean database state
+sudo docker compose down -v
 
-sudo docker compose down
+# kill bill Node.js bridge
+pkill -f "node listener.js" || echo "node bridge not running."
 
-echo "node process shutdown."
+# kill bill Java Spring Boot
+pkill -f "spring-boot" || echo "java backend not running."
 
-pkill -f "node index.js" || echo "No Node.js process found."
+# clean ports just in case
+fuser -k 3000/tcp 8080/tcp 2>/dev/null
 
 echo "----------------------------------------"
-echo "node and docker containers stopped."
-echo "java still on."
+echo "system offline: docker, node and java stopped."
 echo "----------------------------------------"
-
-# Mostra o status final (deve aparecer vazio ou 'Exited')
-sudo docker ps -a

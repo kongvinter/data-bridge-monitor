@@ -18,6 +18,7 @@ client.query('LISTEN new_event_channel');
 
 client.on('notification', (msg) => {
     const payload = JSON.parse(msg.payload);
+    console.log("data received from postgres and emitted to socket");
     console.log('Payload:', payload);
     io.emit('new-register', payload);
 });
