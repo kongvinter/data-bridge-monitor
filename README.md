@@ -13,4 +13,4 @@ scripts linux/fedora : ./genesis.sh (up docker, build java, start node) ./apocal
 
 send data : curl -X POST http://localhost:8080/data -H "Content-Type: application/json" -d '{"content": "socket test"}' logs node : check terminal for "data received from postgres and emitted to socket"
 
-![Data Bridge Monitor](DATA BRIDGE MONITOR.png)
+![Data Bridge Monitor](dbm.png)
