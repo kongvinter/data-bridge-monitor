@@ -1,4 +1,4 @@
-package com.example.demo.controller; 
+package com.example.demo.controller;
 
 import java.util.List;
 
@@ -10,20 +10,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.RecordEntity;
 import com.example.demo.repository.RecordRepository;
+import com.example.demo.service.NotificationService;
 
 @RestController
 @RequestMapping("/api/records")
 public class RecordController {
 
     private final RecordRepository repository;
+    private final NotificationService notificationService;
 
-    public RecordController(RecordRepository repository) {
+
+    public RecordController(RecordRepository repository, NotificationService notificationService) {
         this.repository = repository;
+        this.notificationService = notificationService;
     }
 
     @PostMapping
     public RecordEntity create(@RequestBody RecordEntity record) {
-        return repository.save(record);
+
+        RecordEntity savedRecord = repository.save(record);
+
+
+        notificationService.sendtrigger(savedRecord.getId());
+
+        return savedRecord;
     }
 
     @GetMapping

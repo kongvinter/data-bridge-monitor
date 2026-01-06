@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minimalist Dashboard</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #fff; color: #333; }
+        .log-entry { border-bottom: 1px solid #eee; padding: 10px 0; }
+    </style>
+</head>
+<body>
+    <div id="logs"></div>
+
+    <script>
+        const socket = io('http://localhost:3000');
+        const container = document.getElementById('logs');
+
+        socket.on('new-register', (data) => {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.textContent = JSON.stringify(data);
+            container.prepend(entry);
+        });
+    </script>
+</body>
+</html>
