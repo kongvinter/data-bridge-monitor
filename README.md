@@ -12,3 +12,5 @@ flux novo : [CLIENTE] → POST :8080/data → [JAVA] → [POSTGRES] → [NODE] �
 scripts linux/fedora : ./genesis.sh (up docker, build java, start node) ./apocalypse.sh (stop all, clean containers, kill ports)
 
 send data : curl -X POST http://localhost:8080/data -H "Content-Type: application/json" -d '{"content": "socket test"}' logs node : check terminal for "data received from postgres and emitted to socket"
+
+![Data Bridge Monitor](DATA BRIDGE MONITOR.png)
