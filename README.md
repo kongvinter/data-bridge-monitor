@@ -9,11 +9,10 @@
       (Port 8080)              (Port 5432)               (Logs/Output)
 
 setup linux / mac :genesis.sh (init) , apocalypse.sh (end)
-setup windons :genesis.bat (init) , apocalypse.bat (end)
+setup windows :genesis.bat (init) , apocalypse.bat (end)
 
-flux : Fluxo de Dados: [CLIENTE] → POST :8080/data → [JAVA] → [POSTGRES] ← [NODE] → CONSOLE
+flux : [CLIENTE] → POST :8080/data → [JAVA] → [POSTGRES] ← [NODE] → CONSOLE
 
 send data : curl -X POST http://localhost:8080/data -d '{"msg": "test message"}'
 
 logs : docker logs -f node-consumer
-resilient data bridge between Java and Node.js. High-performance architecture focused on QA automation, idempotency, and data integrity.
