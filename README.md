@@ -28,18 +28,16 @@ This project implements a high-performance Event-Driven Data Pipeline that conne
 🚀 Getting Started (Fedora/Linux)
 
 The project includes automated lifecycle scripts to manage the environment:
-
-    Start the System:
-    Bash
-
-./genesis.sh
+    
+    ./genesis.sh
 
 (This script handles Docker containers, Java builds, and starts the Node.js server)
+    
+    ./genesis.sh
 
-Stop and Clean:
-Bash
-
-    ./apocalypse.sh
+*(Windows)*
+    
+    scripts with  .bat in the end
 
 🧪 Testing the Pipeline
 
