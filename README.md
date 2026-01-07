@@ -15,7 +15,7 @@ High-performance Event-Driven Data Pipeline connecting Java to a real-time Web U
 
     Monitor: Vanilla JS frontend for instant real-time updates.
 
-🚀 Getting Started
+Getting Started
 Option 1: Automated (Recommended)
 
     Fedora/Linux:
@@ -28,7 +28,7 @@ Windows: Run genesis.bat from the terminal or double-click it.
 Option 2: Manual Execution (Step-by-Step)
 
 Run each command in a separate terminal to monitor live logs:
-Component	🐧 Linux 	🪟 Windows (CMD/PS)
+Component	Linux 	Windows (CMD/PS)
 1. Database	docker run --name db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres	Same as Linux
 2. Backend	./mvnw spring-boot:run	.\mvnw.cmd spring-boot:run
 3. Bridge	npm install && node server.js	npm install; node server.js
