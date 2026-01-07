@@ -2,54 +2,58 @@ Prerequisites:Docker,Java 21,Node.js
 
 Data Bridge Monitor
 
-This project implements a high-performance Event-Driven Data Pipeline that connects a Java ecosystem to a real-time web interface using PostgreSQL events and WebSockets via Node.js.
+High-performance Event-Driven Data Pipeline connecting Java to a real-time Web UI via PostgreSQL events and WebSockets.
 🔄 System Workflow
 
 [CLIENT] → POST :8080/data → [JAVA] → [POSTGRES] → [NODE] → [WEB MONITOR]
 
-    Backend: Persists data and handles business logic using Spring Boot.
+    Backend: Spring Boot (Java 21) handles logic and persistence.
 
-    Database: Utilizes a PostgreSQL trigger to fire NOTIFY new_register events.
+    Database: PostgreSQL + Trigger fires NOTIFY new_register events.
 
-    Bridge: A Node.js listener that captures DB events and broadcasts them via Socket.io.
+    Bridge: Node.js listens to DB events and broadcasts via Socket.io.
 
-    Monitor: A Vanilla JS frontend that receives updates instantly without page refreshes.
+    Monitor: Vanilla JS frontend for instant real-time updates.
 
-🛠️ Tech Stack
+🚀 Getting Started
+Option 1: Automated (Recommended)
 
-    Java 21 & Spring Boot (REST API)
+Fedora/Linux:
+Bash
 
-    PostgreSQL (Native Event Triggering)
+chmod +x genesis.sh
+./genesis.sh
 
-    Node.js & Socket.io (Real-time Bridge)
+Windows: Run genesis.bat from the terminal or double-click it.
+Option 2: Manual Execution (Step-by-Step)
 
-    Docker (Database Containerization)
+Run each command in a separate terminal to monitor live logs:
+Component	🐧 Linux (Fedora)	🪟 Windows (CMD/PS)
+1. Database	docker run --name db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres	Same as Linux
+2. Backend	./mvnw spring-boot:run	.\mvnw.cmd spring-boot:run
+3. Bridge	npm install && node server.js	npm install; node server.js
+4. Monitor	xdg-open index.html	start index.html
 
-🚀 Getting Started (Fedora/Linux)
-
-The project includes automated lifecycle scripts to manage the environment:
-    
-    ./genesis.sh
-
-(This script handles Docker containers, Java builds, and starts the Node.js server)
-    
-    ./genesis.sh
-
-*(Windows)*
-    
-    scripts with  .bat in the end
+    ⚠️ Note: Ensure your PostgreSQL trigger is active: CREATE TRIGGER ... AFTER INSERT ... EXECUTE FUNCTION notify_new_register();
 
 🧪 Testing the Pipeline
 
-With the system running and index.html open in your browser, send a test payload via terminal:
+With the system running, send a test payload via terminal:
+
+Linux:
 Bash
 
 curl -X POST http://localhost:8080/data \
-     -H "Content-Type: application/json" \
-     -d '{"content": "socket test"}'
+-H "Content-Type: application/json" \
+-d '{"content": "socket test"}'
 
-Node.js Logs: Check your terminal to confirm the broadcast:
+Windows (PowerShell):
+PowerShell
 
-"Data received from postgres and emitted to socket"
+curl.exe -X POST http://localhost:8080/data `
+-H "Content-Type: application/json" `
+-d '{"content": "socket test"}'
+
+Expected Result: Check your Node.js terminal for: "Data received from postgres and emitted to socket"
 
 ![Data Bridge Monitor](dbm.png)
