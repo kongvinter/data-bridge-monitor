@@ -1,16 +1,56 @@
-# data-bridge-monitor
-![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk)
-![NodeJS](https://img.shields.io/badge/Node.js-20-green?style=for-the-badge&logo=node.js)
-![Docker](https://img.shields.io/badge/Docker-Container-blue?style=for-the-badge&logo=docker)
 
-*Prerequisites: > - Docker & Docker Compose installed.*
+Data Bridge Monitor
 
-[ WEB MONITORING ] <--(Socket.io)-- [ NODE BRIDGE ] <--(Notify)-- [ POSTGRES ] (Browser :3000) (Port 3000) (Port 5432)
+This project implements a high-performance Event-Driven Data Pipeline that connects a Java ecosystem to a real-time web interface using PostgreSQL events and WebSockets via Node.js.
+🔄 System Workflow
 
-flux novo : [CLIENTE] → POST :8080/data → [JAVA] → [POSTGRES] → [NODE] → [WEB HTML] real-time : socket.io connection established on client load web view : open index.html in browser to see live updates
+[CLIENT] → POST :8080/data → [JAVA] → [POSTGRES] → [NODE] → [WEB MONITOR]
 
-scripts linux/fedora : ./genesis.sh (up docker, build java, start node) ./apocalypse.sh (stop all, clean containers, kill ports)
+    Backend: Persists data and handles business logic using Spring Boot.
 
-send data : curl -X POST http://localhost:8080/data -H "Content-Type: application/json" -d '{"content": "socket test"}' logs node : check terminal for "data received from postgres and emitted to socket"
+    Database: Utilizes a PostgreSQL trigger to fire NOTIFY new_register events.
+
+    Bridge: A Node.js listener that captures DB events and broadcasts them via Socket.io.
+
+    Monitor: A Vanilla JS frontend that receives updates instantly without page refreshes.
+
+🛠️ Tech Stack
+
+    Java 21 & Spring Boot (REST API)
+
+    PostgreSQL (Native Event Triggering)
+
+    Node.js & Socket.io (Real-time Bridge)
+
+    Docker (Database Containerization)
+
+🚀 Getting Started (Fedora/Linux)
+
+The project includes automated lifecycle scripts to manage the environment:
+
+    Start the System:
+    Bash
+
+./genesis.sh
+
+(This script handles Docker containers, Java builds, and starts the Node.js server)
+
+Stop and Clean:
+Bash
+
+    ./apocalypse.sh
+
+🧪 Testing the Pipeline
+
+With the system running and index.html open in your browser, send a test payload via terminal:
+Bash
+
+curl -X POST http://localhost:8080/data \
+     -H "Content-Type: application/json" \
+     -d '{"content": "socket test"}'
+
+Node.js Logs: Check your terminal to confirm the broadcast:
+
+"Data received from postgres and emitted to socket"
 
 ![Data Bridge Monitor](dbm.png)
