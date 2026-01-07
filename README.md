@@ -1,3 +1,4 @@
+Prerequisites:Docker,Java 21,Node.js
 
 Data Bridge Monitor
 
