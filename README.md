@@ -22,13 +22,15 @@ Monitor: Vanilla JS frontend for instant real-time updates.
 Getting Started
 Option 1: Automated (Recommended)
 
-    Fedora/Linux:
-    Bash
+Linux:
 
-    chmod +x genesis.sh
+    ```chmod +x genesis.sh
     ./genesis.sh
 
-Windows: Run genesis.bat from the terminal or double-click it.
+Windows: 
+
+    ```genesis.bat
+
 Option 2: Manual Execution (Step-by-Step)
 
 | Component | Linux  | Windows (CMD/PS) |
