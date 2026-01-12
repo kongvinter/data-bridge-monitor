@@ -11,13 +11,13 @@ High-performance Event-Driven Data Pipeline connecting Java to a real-time Web U
 
 [CLIENT] → POST :8080/data → [JAVA] → [POSTGRES] → [NODE] → [WEB MONITOR]
 
-    Backend: Spring Boot (Java 21) handles logic and persistence.
+Backend: Spring Boot (Java 21) handles logic and persistence.
 
-    Database: PostgreSQL + Trigger fires NOTIFY new_register events.
+Database: PostgreSQL + Trigger fires NOTIFY new_register events.
 
-    Bridge: Node.js listens to DB events and broadcasts via Socket.io.
+Bridge: Node.js listens to DB events and broadcasts via Socket.io.
 
-    Monitor: Vanilla JS frontend for instant real-time updates.
+Monitor: Vanilla JS frontend for instant real-time updates.
 
 Getting Started
 Option 1: Automated (Recommended)
@@ -47,16 +47,16 @@ With the system running, send a test payload via terminal:
 Linux:
 Bash
 
-curl -X POST http://localhost:8080/data \
--H "Content-Type: application/json" \
--d '{"content": "socket test"}'
+    curl -X POST http://localhost:8080/data \
+    -H "Content-Type: application/json" \
+    -d '{"content": "socket test"}'
 
 Windows:
 PowerShell
 
-curl.exe -X POST http://localhost:8080/data `
--H "Content-Type: application/json" `
--d '{"content": "socket test"}'
+    curl.exe -X POST http://localhost:8080/data `
+    -H "Content-Type: application/json" `
+    -d '{"content": "socket test"}'
 
 Expected Result: Check your Node.js terminal for: "Data received from postgres and emitted to socket"
 
