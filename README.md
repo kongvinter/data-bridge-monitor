@@ -24,12 +24,12 @@ Option 1: Automated (Recommended)
 
 Linux:
 
-    ```chmod +x genesis.sh
+    chmod +x genesis.sh
     ./genesis.sh
 
 Windows: 
 
-    ```genesis.bat
+    genesis.bat
 
 Option 2: Manual Execution (Step-by-Step)
 
