@@ -1,9 +1,13 @@
-Prerequisites:Docker,Java 21,Node.js
+### ✅ Prerequisites
+- [ ] Docker installed
+- [ ] Java 21 (JDK)
+- [ ] Node.js (LTS)
 
-Data Bridge Monitor
+# Data Bridge Monitor
 
 High-performance Event-Driven Data Pipeline connecting Java to a real-time Web UI via PostgreSQL events and WebSockets.
-🔄 System Workflow
+
+## System Workflow
 
 [CLIENT] → POST :8080/data → [JAVA] → [POSTGRES] → [NODE] → [WEB MONITOR]
 
@@ -27,16 +31,16 @@ Option 1: Automated (Recommended)
 Windows: Run genesis.bat from the terminal or double-click it.
 Option 2: Manual Execution (Step-by-Step)
 
-Run each command in a separate terminal to monitor live logs:
-Component	Linux 	Windows (CMD/PS)
-1. Database	docker run --name db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres	Same as Linux
-2. Backend	./mvnw spring-boot:run	.\mvnw.cmd spring-boot:run
-3. Bridge	npm install && node server.js	npm install; node server.js
-4. Monitor	xdg-open index.html	start index.html
+| Component | Linux  | Windows (CMD/PS) |
+| :--- | :--- | :--- |
+| **Database** | `docker run --name db...` | Same as Linux |
+| **Backend** | `./mvnw spring-boot:run` | `.\mvnw.cmd spring-boot:run` |
+| **Bridge** | `npm install && node server.js` | `npm install; node server.js` |
+| **Monitor** | `xdg-open index.html` | `start index.html` |
 
-    ⚠️ Note: Ensure your PostgreSQL trigger is active: CREATE TRIGGER ... AFTER INSERT ... EXECUTE FUNCTION notify_new_register();
+    **Note: Ensure your PostgreSQL trigger is active: CREATE TRIGGER ... AFTER INSERT ... EXECUTE FUNCTION notify_new_register();**
 
-🧪 Testing the Pipeline
+## Testing the Pipeline
 
 With the system running, send a test payload via terminal:
 
@@ -47,7 +51,7 @@ curl -X POST http://localhost:8080/data \
 -H "Content-Type: application/json" \
 -d '{"content": "socket test"}'
 
-Windows (PowerShell):
+Windows:
 PowerShell
 
 curl.exe -X POST http://localhost:8080/data `
