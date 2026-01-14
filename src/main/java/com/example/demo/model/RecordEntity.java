@@ -1,40 +1,45 @@
 package com.example.demo.model;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 @Table(name = "raw_records")
 public class RecordEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @NotBlank(message = "Data cannot be blank")
+    @Column(name = "content")
     private String data;
 
+    @Column(name = "send_timestamp")
+    @JsonProperty("sendTimestamp")
+    private Long sendTimestamp;
+
+    @Column(name = "created_at",insertable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-
-    public RecordEntity() {}
-
-
-    public RecordEntity(UUID id, String data) {
-        this.id = id;
-        this.data = data;
+    @PrePersist
+    private void onCreate() {
+        this.sendTimestamp = System.currentTimeMillis();
     }
-
-
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
-    public String getData() { return data; }
-    public void setData(String data) { this.data = data; }
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
-
 }
+

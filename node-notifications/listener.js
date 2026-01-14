@@ -10,7 +10,7 @@ const io = new Server(server, {
 });
 
 const client = new Client({
-    connectionString: 'postgresql://user:password@localhost:5432/bridge_db'
+    connectionString: 'postgresql://user:password@db:5432/bridge_db'
 });
 
 client.connect();

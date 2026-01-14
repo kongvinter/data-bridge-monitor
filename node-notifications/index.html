@@ -7,6 +7,14 @@
     <style>
         body { font-family: monospace; padding: 20px; background: #fff; color: #333; }
         .log-entry { border-bottom: 1px solid #eee; padding: 10px 0; }
+        #latency-monitor{
+            font-weight: bold;
+            padding: 10px;
+            background: #f4f4f4;
+            display: inline-block;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -21,6 +29,23 @@
             entry.className = 'log-entry';
             entry.textContent = JSON.stringify(data);
             container.prepend(entry);
+            const ts = data.sendTimestamp;
+            if(ts) {
+              const now = Date.now();
+              const latency = now - ts;
+              console.log("calc lat.");
+              console.log("now:", now, "send:", ts);
+              console.log(`Latency: ${latency} ms`);
+
+            }
+
+            const statusDiv = document.getElementById('latency-monitor');
+            if (statusDiv) {
+            statusDiv.innerText = `Última Latência: ${latency}ms`;
+            statusDiv.style.color = latency < 100 ? '#00ff00' : '#ffcc00';
+    }else{
+      console.warn("sendTimestamp not found");
+        }
         });
     </script>
 </body>

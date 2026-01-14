@@ -12,6 +12,8 @@ import com.example.demo.model.RecordEntity;
 import com.example.demo.repository.RecordRepository;
 import com.example.demo.service.NotificationService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/records")
 public class RecordController {
@@ -26,7 +28,7 @@ public class RecordController {
     }
 
     @PostMapping
-    public RecordEntity create(@RequestBody RecordEntity record) {
+    public RecordEntity create(@Valid @RequestBody RecordEntity record) {
 
         RecordEntity savedRecord = repository.save(record);
 
