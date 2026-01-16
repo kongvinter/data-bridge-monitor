@@ -19,6 +19,7 @@ pgdata/
 *.swp
 *.iml
 
+.env
 
 HELP.md
 .DS_Store
