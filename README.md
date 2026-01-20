@@ -1,4 +1,4 @@
-### ✅ Prerequisites
+### Prerequisites
 - [ ] Docker installed
 - [ ] Java 21 (JDK)
 - [ ] Node.js (LTS)
